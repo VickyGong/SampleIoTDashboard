@@ -1,25 +1,25 @@
 $(document).ready(function() {
-    $("#ledOn").click(function() {
+    $("#deviceOn").click(function() {
         var deviceId = $("#deviceId").val();
-        var uri = "/" + deviceId + "/led/1";
+        var uri = "/" + deviceId + "/state/1";
         
         $.post(uri, function() {
-            alert("LED ON sent");
+            alert("DEVICE ON sent");
         })
         .fail(function(data) {
-            alert( "LED ON error" );
+            alert( "DEVICE ON error" );
         });
     });
         
-    $("#ledOff").click(function() {
+    $("#deviceOff").click(function() {
         var deviceId = $("#deviceId").val();
-        var uri = "/" + deviceId + "/led/0";
+        var uri = "/" + deviceId + "/state/0";
         
         $.post(uri, function() {
-            alert("LED OFF sent");
+            alert("DEVICE OFF sent");
         })
         .fail(function() {
-            alert( "LED OFF error" );
+            alert( "DEVICE OFF error" );
         });
     });
 });

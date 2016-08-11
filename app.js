@@ -21,11 +21,19 @@ app.get('/', function(req, res) {
     res.sendfile(__dirname + '/index.html')
 });
 
-app.post('/:deviceId/led/:state', function (req, res) { 
+app.post('/:deviceId/state/:state', function (req, res) { 
     var deviceId = req.params.deviceId;
     var ledState = req.params.state;   
-    var messageData = '{"ledState":' + ledState + '}';
-    
+	//var messageData = '{"ledState":' + ledState + '}';
+	var command = '';
+	if (ledState == 1) {
+		command = 'Turn on device';
+	}
+	else { 
+		command = 'Turn off device';
+	}
+	var messageData = '{"Name":' + '"' + command + '"' + '}';
+
     var client = IotHubClient.fromConnectionString(iotHubConnectionString);
     client.open(function (err) {
         if (err) {
