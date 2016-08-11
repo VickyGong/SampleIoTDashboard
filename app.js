@@ -6,9 +6,10 @@ var Message = require('azure-iot-common').Message;
 
 app = express().http().io()
 
-var iotHubConnectionString = process.env.THINGLABS_IOTHUB_CONNSTRING || ''
-var eventHubConnectionString = process.env.THINGLABS_EVENTHUB_CONNSTRING || ''
-var client = EventHubClient.fromConnectionString(eventHubConnectionString, 'iotlab-telemetry-eh')
+var iotHubConnectionString = process.env.IOTHUB_CONNSTRING || ''
+var eventHubConnectionString = process.env.EVENTHUB_CONNSTRING || ''
+var iotHubName = process.env.IOTHUB_NAME || ''
+var client = EventHubClient.fromConnectionString(eventHubConnectionString, iotHubName);
 
 // Setup your sessions, just like normal.
 app.use(express.cookieParser())
